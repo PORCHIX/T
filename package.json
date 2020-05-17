@@ -6,15 +6,21 @@
   "author": "Richard Hofmänner <hello@terillos.dev>",
   "license": "MIT",
   "scripts": {
-    "build-watch": "npx tsc -w --outDir build src/server.ts",
-    "dev": "npx nodemon -w build build/server.js"
+    "build-watch": "tsc -w --outDir build src/server.ts",
+    "dev": "nodemon -w build build/server.js",
+    "build": "tsc --outDir build src/server.ts",
+    "start": "node build/server.js"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
-    "telegraf": "^3.38.0"
+    "got": "^11.1.4",
+    "telegraf": "^3.38.0",
+    "validator": "^13.0.0"
   },
   "devDependencies": {
     "@types/node": "^14.0.1",
+    "@types/validator": "^13.0.0",
     "nodemon": "^2.0.4",
     "typescript": "^3.9.2"
   }
