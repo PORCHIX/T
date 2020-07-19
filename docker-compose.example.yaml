@@ -1,0 +1,14 @@
+version: '3'
+services:
+  rendertron:
+    image: terillos/rendertron
+    ports:
+    - "9050:3000"
+  bot:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    depends_on:
+      - rendertron
+    environment:
+      - BOT_TOKEN=

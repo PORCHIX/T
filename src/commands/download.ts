@@ -12,7 +12,12 @@ export default async function (ctx: ExtendedContext) {
     if (validator.isURL(ctx.message.cmdArgs[1])) {
         let res: Response = await got.get(ctx.message.cmdArgs[1], {followRedirect: true})
         const redirectUrl: string = res.redirectUrls[0]
-        let resRedirect: Response = await got.get(redirectUrl, {
+
+        let renderedHtml = await got.get(`http://localhost:9050/render/${redirectUrl}`);
+
+        console.log(renderedHtml);
+
+        /* let resRedirect: Response = await got.get(redirectUrl, {
             headers: {
                 'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) snap Chromium/81.0.4044.138 Chrome/81.0.4044.138 Safari/537.36'
             }
@@ -28,7 +33,9 @@ export default async function (ctx: ExtendedContext) {
 
         ctx.replyWithVideo({source: `${ctx.from.id}.mp4`})
 
-        fs.unlinkSync(`${ctx.from.id}.mp4`)
+        fs.unlinkSync(`${ctx.from.id}.mp4`) */
+
+        ctx.reply('Finished');
 
     } else {
         ctx.reply(`${ctx.message.cmdArgs[1]} is not a valid URL.`)
